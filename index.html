@@ -147,6 +147,13 @@ function calculate() {
 }
 
 updateForm();
+
+function sendHeight() {
+  const h = document.body.scrollHeight;
+  parent.postMessage({ iframeHeight: h }, '*');
+}
+new MutationObserver(sendHeight).observe(document.body, { childList: true, subtree: true, attributes: true });
+window.addEventListener('load', sendHeight);
 </script>
 </body>
 </html>
